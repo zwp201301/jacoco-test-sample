@@ -9,7 +9,8 @@ java -javaagent:doc/jacocoagent.jar=includes=com.jacoco.*,output=tcpserver,port=
 ```shell
 java -jar doc/jacococli.jar dump --address 172.27.3.242 --port 7195 --destfile target/jacoco.exec
 
-java -jar doc/jacococli.jar report jacoco.exec --classfiles target/classes --sourcefiles src/main/java --html target
+java -jar doc/jacococli.jar report target/jacoco.exec --classfiles target/classes --sourcefiles src/main/java \
+ --html target --xml target/site/jacoco/report.xml --csv target/site/jacoco/report.csv
 ```
 
 ## 3、使用maven-jacoco-plugin
@@ -51,4 +52,14 @@ java -jar doc/jacococli.jar report jacoco.exec --classfiles target/classes --sou
 </plugin>
 ```
 
-## 4、单元测试
+## 4、ant集成jacoco
+```shell
+ant -buildfile doc/build.xml build
+```
+
+## 5、diff-cover增量覆盖统计
+```shell
+# 假设当前是测试分支test，要对比的分支是master。这里的origin/master是远程的master分支
+diff-cover target/site/jacoco/report.xml --compare-branch origin/master --diff-range-notation .. --src-roots src/main/java \
+  --html-report target/site/jacoco/diff.html
+```
