@@ -1,16 +1,21 @@
 ## 1、加载javaagent
 先编译，然后启动脚本：
 ```shell
-java -javaagent:doc/jacocoagent.jar=includes=com.jacoco.*,output=tcpserver,port=7195,address=192.168.8.28,classdumpdir=classdumpdir/classes/ \
+java -javaagent:doc/jacocoagent.jar=includes=com.jacoco.*,output=tcpserver,port=7195,address=172.27.3.242,classdumpdir=classdumpdir/classes/ \
 -jar target/jacoco-test-sample.jar
 ```
 
 ## 2、使用jacoco cli客户端
 ```shell
-java -jar doc/jacococli.jar dump --address 172.27.3.242 --port 7195 --destfile target/jacoco.exec
+java -jar doc/jacococli.jar dump --address 172.27.3.242 --port 7195 \
+  --destfile target/jacoco.exec
 
-java -jar doc/jacococli.jar report target/jacoco.exec --classfiles target/classes --sourcefiles src/main/java \
- --html target --xml target/site/jacoco/report.xml --csv target/site/jacoco/report.csv
+java -jar doc/jacococli.jar report target/jacoco.exec \
+  --classfiles target/classes \
+  --sourcefiles src/main/java \
+  --html target \
+  --xml target/site/jacoco/report.xml \
+  --csv target/site/jacoco/report.csv
 ```
 
 ## 3、使用maven-jacoco-plugin
