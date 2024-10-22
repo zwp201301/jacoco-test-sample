@@ -1,7 +1,7 @@
 ## 1、加载javaagent
 先编译，然后启动脚本：
 ```shell
-java -javaagent:jacocoagent.jar=includes=com.jacoco.*,output=tcpserver,port=7195,address=172.27.3.242,classdumpdir=classdumpdir/classes/ \
+java -javaagent:doc/jacocoagent.jar=includes=com.jacoco.*,output=tcpserver,port=7195,address=192.168.8.28,classdumpdir=classdumpdir/classes/ \
 -jar target/jacoco-test-sample.jar
 ```
 

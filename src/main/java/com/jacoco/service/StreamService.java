@@ -33,10 +33,6 @@ public class StreamService {
                                 }
                         )));
 
-        for (Map.Entry<Boolean, List<Integer>> entry : result.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + ", Value: " + StringUtils.join(entry.getValue()));
-        }
-
         return result;
     }
 
